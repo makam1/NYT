@@ -1,21 +1,59 @@
-<!--The content below is only a placeholder and can be replaced.-->
-<div style="text-align:center">
-  <h1>
-    Welcome to {{ title }}!
-  </h1>
-  <img width="300" alt="Angular Logo" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNTAgMjUwIj4KICAgIDxwYXRoIGZpbGw9IiNERDAwMzEiIGQ9Ik0xMjUgMzBMMzEuOSA2My4ybDE0LjIgMTIzLjFMMTI1IDIzMGw3OC45LTQzLjcgMTQuMi0xMjMuMXoiIC8+CiAgICA8cGF0aCBmaWxsPSIjQzMwMDJGIiBkPSJNMTI1IDMwdjIyLjItLjFWMjMwbDc4LjktNDMuNyAxNC4yLTEyMy4xTDEyNSAzMHoiIC8+CiAgICA8cGF0aCAgZmlsbD0iI0ZGRkZGRiIgZD0iTTEyNSA1Mi4xTDY2LjggMTgyLjZoMjEuN2wxMS43LTI5LjJoNDkuNGwxMS43IDI5LjJIMTgzTDEyNSA1Mi4xem0xNyA4My4zaC0zNGwxNy00MC45IDE3IDQwLjl6IiAvPgogIDwvc3ZnPg==">
+<header class="header entête">
+  <nav class="navbar navbar-expand-lg navbar-dark bg-info"><img src="assets/img/logo.png" alt="" class="img-fluid"><a href="" class="navbar-brand font-weight-bold  text-base">Nei-Yawi-Transfert</a>
+    <ul class="ml-auto d-flex align-items-center list-unstyled mb-0">
+      <li class="nav-item" >
+        <a class="nav-link" style="cursor: pointer" *ngIf="isConnecter()" (click)="_auth.logout()">Deconnexion</a>
+      </li>
+    </ul>
+  </nav>
+</header>
+<div class="d-flex align-items-stretch menu">
+  <div id="sidebar" class="sidebar py-3" *ngIf="isConnecter()">
+    <div class="text-gray-400 text-uppercase px-3 px-lg-4 py-4 font-weight-bold small headings-font-family">MENU</div>
+      <ul class="sidebar-menu list-unstyled">
+        <li class="sidebar-list-item">
+          <a class="sidebar-link text-muted " routerLink=""><i class="o-home-1 mr-3 text-gray"></i>Accueil <span class="sr-only">(current)</span></a>
+        </li>
+        <li class="sidebar-list-item">
+         <a class="sidebar-link text-muted " *ngIf="isAdmin() || isPartenaire()" routerLink="/contrats"><i class="o-paperwork-1 mr-3 text-gray"></i>Contrats</a>
+        </li>
+        <li class="sidebar-list-item">
+        <a class="sidebar-link text-muted " *ngIf="isCaissier()" routerLink=""><i class="o-database-1 mr-3 text-gray"></i>Dépôt</a>
+        </li>
+        <li  class="sidebar-list-item" *ngIf="isUser() || isPartenaire()" ><a href="" data-toggle="collapse" class="sidebar-link text-muted" data-target="#operations" aria-expanded="false" aria-controls="operations" ><i class="o-wireframe-1 mr-3 text-gray"></i><span>Opérations</span></a>
+          <div id="operations"  class="collapse" >
+            <ul class="sidebar-menu list-unstyled border-left border-primary border-thick">
+              <li  class="sidebar-list-item"><a class="nav-link text-muted"  routerLink="/operations">Envoi</a></li>
+              <li  class="sidebar-list-item"><a class="nav-link text-muted"  routerLink="/retrait">Retrait</a></li>
+            </ul>
+          </div>
+        </li>
+      <li class="sidebar-list-item"><a href="" data-toggle="collapse" class="sidebar-link text-muted" data-target="#pages" aria-expanded="false" aria-controls="pages" ><i class="o-survey-1 mr-3 text-gray"></i><span>Ajouter</span></a>
+      <div id="pages" class="collapse">
+        <ul class="sidebar-menu list-unstyled border-left border-primary border-thick">
+          <li *ngIf="isAdmin()" class="sidebar-list-item"><a class="nav-link text-muted"  routerLink="/partenaire">Partenaire</a></li>
+          <li *ngIf="isAdmin() || isPartenaire()" class="sidebar-list-item"><a class="nav-link text-muted"  routerLink="/admin">Admin</a></li>
+          <li *ngIf="isPartenaire()" class="sidebar-list-item"><a class="nav-link text-muted"  routerLink="/user">User</a></li>
+          <li *ngIf="isAdmin()" class="sidebar-list-item"><a class="nav-link text-muted"  routerLink="/caissier">Caissier</a></li>
+          <li *ngIf="isAdmin()" class="sidebar-list-item"><a class="nav-link text-muted"  routerLink="/register">SuperAdmin</a></li>
+          <li *ngIf="isAdmin() || isCaissier()" class="sidebar-list-item"><a class="nav-link text-muted"  routerLink="/compte">Compte</a></li>
+        </ul>
+      </div>
+    </li>
+    <li class="sidebar-list-item"><a href="#" data-toggle="collapse" class="sidebar-link text-muted" data-target="#listes" aria-expanded="false" aria-controls="listes" ><i class="o-table-content-1 mr-3 text-gray"></i><span>Listes</span></a>
+      <div id="listes" class="collapse">
+        <ul class="sidebar-menu list-unstyled border-left border-primary border-thick">
+          <li *ngIf="isAdmin()" class="sidebar-list-item"><a class="nav-link text-muted"  routerLink="/listes">Partenaire</a></li>
+          <li *ngIf="isAdmin() || isPartenaire()" class="sidebar-list-item"><a class="nav-link text-muted"  routerLink="/listes">Utilisateurs</a></li>
+          <li *ngIf="isAdmin() || isCaissier()" class="sidebar-list-item"><a class="nav-link text-muted"  routerLink="/listes">Comptes</a></li>
+          <li *ngIf="isAdmin() || isCaissier()" class="sidebar-list-item"><a class="nav-link text-muted"  routerLink="/listes">Dépôts</a></li>
+          <li class="sidebar-list-item"><a class="nav-link text-muted"  routerLink="/listes">Opérations</a></li>
+          <li class="sidebar-list-item"><a class="nav-link text-muted"  routerLink="/listes">Commissions</a></li>
+          <li *ngIf="isUser() || isPartenaire()" class="sidebar-list-item"><a class="nav-link text-muted"  routerLink="/listes">Clients</a></li>
+        </ul>
+      </div>
+    </li>
+  </ul>
 </div>
-<h2>Here are some links to help you start: </h2>
-<ul>
-  <li>
-    <h2><a target="_blank" rel="noopener" href="https://angular.io/tutorial">Tour of Heroes</a></h2>
-  </li>
-  <li>
-    <h2><a target="_blank" rel="noopener" href="https://angular.io/cli">CLI Documentation</a></h2>
-  </li>
-  <li>
-    <h2><a target="_blank" rel="noopener" href="https://blog.angular.io/">Angular blog</a></h2>
-  </li>
-</ul>
-
 <router-outlet></router-outlet>
+

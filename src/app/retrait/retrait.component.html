@@ -1,0 +1,96 @@
+<div class="page-holder w-100 d-flex flex-wrap">
+  <div class="container-fluid px-xl-5">
+    <section class="">
+      <div class="card-header mt-5">
+        <h3 class="mb-0">Effectuer un retrait</h3>
+      </div>
+      <div class="card-body">
+        <form #retraitForm=ngForm class="form" (ngSubmit)="OnSubmit(Type,Montant,Code,CniB)">
+          <div class="container ">
+            <div class="row">
+              <div class="row">
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <input type="hidden" value="retrait" #Type   class="form-control is-invalid erreur  rounded-0" [(ngModel)]="retraitData.type" name="type" readonly >
+                  </div>
+                <div class="form-group">
+                  <label *ngIf="Code.value!='' && CniB.value!=''">Code</label>
+                  <input type="number" placeholder="Entrer le code*"  #Code class="form-control rounded-0" [(ngModel)]="retraitData.code" name="code" required>
+                </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <input type="hidden" value="0" #Montant   class="form-control is-invalid erreur  rounded-0" [(ngModel)]="retraitData.montant" name="montant" readonly >
+                    </div>
+                    <div class="form-group">
+                      <label *ngIf="Code.value!='' && CniB.value!=''">CNI</label>
+                      <input type="number" placeholder="Numéro de carte d'identité*"  #CniB class="form-control rounded-0" [(ngModel)]="retraitData.ncibeneficiaire" name="ncibeneficiaire" required>
+                    </div>
+                </div>
+              </div>
+            </div>
+            <div class="row" *ngIf="Code.value!='' && CniB.value!=''">
+              <div class="row">
+                <div class="col-12 col-md-6 envoy">
+                  <h6 class="card-body">Envoyeur</h6>
+                  <div class="row">
+                    <div class="col-md-6">
+                      <div class="form-group">
+                        <input type="text" placeholder="Nom*" #NomE class="form-control  rounded-0" readonly>
+                      </div>
+                    </div>
+                    <div class="col-md-6">
+                      <div class="form-group">
+                        <input type="text"  #PrenomE placeholder="Prenom*" class="form-control rounded-0"  readonly>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-md-6">
+                      <div class="form-group">
+                        <input type="number" #TelephoneE placeholder="Téléphone*" class="form-control rounded-0" readonly>
+                      </div>
+                    </div>
+                    <div class="col-md-6">
+                      <div class="form-group">
+                        <input type="number" #NciE placeholder="Numéro carte d'identité*" class="form-control rounded-0"  readonly>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-12 col-md-6 benef ">
+                  <h6 class="card-body">Bénéficiaire</h6>
+                  <div class="row">
+                    <div class="col-md-6">
+                      <div class="form-group">
+                        <input type="text" placeholder="Nom*" #NomB class="form-control rounded-0" readonly>
+                      </div>
+                    </div>
+                    <div class="col-md-6">
+                      <div class="form-group">
+                        <input type="text" placeholder="Prénom*" #PrenomB class="form-control rounded-0" readonly>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-md-6">
+                      <div class="form-group">
+                        <input type="number" placeholder="Téléphone*" #TelephoneB  class="form-control rounded-0" readonly>
+                      </div>
+                    </div>
+                    <div class="col-md-6">
+                      <div class="form-group">
+                        <input type="number" placeholder="Montant*" #Envoi class="form-control rounded-0" readonly>
+                      </div>
+                    </div>
+                    </div>
+                </div>
+                </div>
+              </div>
+            </div>
+            <button type="button" (click)="retraitOp()" class="btn btn-success float-left" [disabled]="!retraitForm.valid">Retirer</button>
+            </form>
+          </div>
+    </section>
+  </div>
+</div>

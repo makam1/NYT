@@ -1,0 +1,66 @@
+<div class="page-holder w-100 d-flex flex-wrap">
+  <div class="container-fluid px-xl-5">
+    <section class="py-5">
+
+        <div class="card-header">
+          <h3 class="mb-0">Ajouter un Caissier</h3>
+        </div>
+        <div class="card-body">
+          <form #imageForm=ngForm class="form" (ngSubmit)="OnSubmit(Username,Password,Nom,Email,Telephone,Image)">
+            <div class="row">
+              <div class="col-md-6">
+            <div class="form-group">
+              <label>Username</label>
+              <input type="text"  #Username class="form-control is-invalid erreur rounded-0" [(ngModel)]="caissierData.username" name="username" required>
+              <div *ngIf="Username.value==''" class="invalid-feedback ml-3">Renseignez le champ</div>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="form-group">
+              <label>Password</label>
+              <input type="password" #Password class="form-control is-invalid erreur rounded-0" [(ngModel)]="caissierData.password" name="password" required>
+              <div *ngIf="Password.value==''" class="invalid-feedback ml-3">Renseignez le champ</div>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+            <div class="form-group">
+                <label>Nom</label>
+                <input type="text" #Nom  class="form-control is-invalid erreur  rounded-0" [(ngModel)]="caissierData.nom" name="nom" required>
+                <div *ngIf="Nom.value==''" class="invalid-feedback ml-3">Renseignez le champ</div>
+              </div>
+          </div>
+          <div class="col-md-6">
+            <div class="form-group">
+                <label>Email</label>
+                <input type="email" #Email class="form-control is-invalid erreur  rounded-0" [(ngModel)]="caissierData.email" name="email" required>
+                <div *ngIf="Email.value==''" class="invalid-feedback ml-3">Renseignez le champ</div>
+              </div>
+          </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+            <div class="form-group">
+                <label>Télephone</label>
+                <input type="number" #Telephone class="form-control is-invalid erreur  rounded-0" [(ngModel)]="caissierData.telephone" name="telephone" required>
+                <div *ngIf="Telephone.value==''" class="invalid-feedback ml-3">Renseignez le champ</div>
+              </div>
+          </div>
+          <div class="col-md-2">
+              <img [src]='imageUrl' class="img-fluid rounded-circle shadow" alt='photo' >
+            </div>
+          <div class="col-md-4">
+            <div class="form-group">
+                <label></label>
+                <input type="file" #Image accept="image/*" class="form-control is-invalid erreur rounded-0" [(ngModel)]="caissierData.imageFile" name="imageFile" (change)="handleInputFile($event.target.files)" required>
+                <div *ngIf="Image.value==''" class="invalid-feedback ml-3">Mettez une photo</div>
+              </div>
+          </div>
+        </div>
+            <button type="button" (click)="addCaissier()" class="btn btn-success float-left" [disabled]="Image.value=='' || !imageForm.valid">Ajouter</button>
+          </form>
+        </div>
+</section>
+</div>
+</div>

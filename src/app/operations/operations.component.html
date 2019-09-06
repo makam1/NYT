@@ -1,0 +1,93 @@
+<div class="page-holder w-100 d-flex flex-wrap">
+  <div class="container-fluid px-xl-5">
+    <section class="">
+      <div class="card-header mt-5">
+        <h3 class="mb-0">Effectuer un envoi</h3>
+      </div>
+      <div class="card-body">
+        <form #envoiForm=ngForm class="form" (ngSubmit)="OnSubmit(NomE,PrenomE,TelephoneE,NciE,NomB,PrenomB,TelephoneB,Type,Montant,Frais,Code)">
+          <div class="container ">
+            <div class="row">
+              <div class="col-12 col-md-6 envoy">
+                <h6 class="card-body">Envoyeur</h6>
+            <div class="row">
+              <div class="col-md-6">
+              <div class="form-group">
+              <input type="text" placeholder="Nom*"  #NomE class="form-control is-invalid erreur rounded-0" [(ngModel)]="envoiData.nomenvoyeur" name="nomenvoyeur" required>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="form-group">
+              <input type="text"  #PrenomE placeholder="Prenom*" class="form-control is-invalid erreur rounded-0" [(ngModel)]="envoiData.prenomenvoyeur" name="prenomenvoyeur" required>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+            <div class="form-group">
+                <input type="number" #TelephoneE placeholder="Téléphone*" class="form-control is-invalid erreur  rounded-0" [(ngModel)]="envoiData.telephoneenvoyeur" name="telephoneenvoyeur" required>
+              </div>
+          </div>
+          <div class="col-md-6">
+            <div class="form-group">
+                <input type="number" #NciE placeholder="Numéro carte d'identité*" class="form-control is-invalid erreur  rounded-0" [(ngModel)]="envoiData.ncienvoyeur" name="ncienvoyeur" required>
+              </div>
+          </div>
+        </div>
+
+          </div>
+          <div class="col-12 col-md-6 benef ">
+
+          <h6 class="card-body">Bénéficiaire</h6>
+          <div class="row">
+            <div class="col-md-6">
+            <div class="form-group">
+            <input type="text" placeholder="Nom*" #NomB class="form-control is-invalid erreur rounded-0" [(ngModel)]="envoiData.nombeneficiaire" name="nombeneficiaire" required>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="form-group">
+            <input type="text" placeholder="Prénom*" #PrenomB class="form-control is-invalid erreur rounded-0" [(ngModel)]="envoiData.prenombeneficiaire" name="prenombeneficiaire" required>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+          <div class="col-md-6">
+          <div class="form-group">
+              <input type="number" placeholder="Téléphone*" #TelephoneB  class="form-control is-invalid erreur  rounded-0" [(ngModel)]="envoiData.telephonebeneficiaire" name="telephonebeneficiaire" required>
+            </div>
+        </div>
+        <div class="col-md-6">
+          <div class="form-group">
+              <input type="hidden" value="Envoi" #Type placeholder="Envoi"  class="form-control is-invalid erreur  rounded-0" [(ngModel)]="envoiData.type" name="type" readonly >
+            </div>
+        </div>
+      </div>
+          </div>
+        </div>
+        <div class="row envoi">
+          <div class="row">
+            <div class="col-md-4">
+            <div class="form-group">
+            <input type="number" placeholder="Montant*" #Montant class="form-control is-invalid erreur rounded-0" [(ngModel)]="envoiData.montant" name="montant" required>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="form-group">
+            <input type="number" placeholder="Frais" value="" #Frais class="form-control is-invalid erreur rounded-0" [(ngModel)]="envoiData.frais" name="frais" readonly >
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="form-group">
+            <input type="number" placeholder="Code" #Code class="form-control is-invalid erreur rounded-0" [(ngModel)]="envoiData.code" name="code" readonly>
+          </div>
+        </div>
+      </div>
+        </div>
+          </div>
+          <button type="button" (click)="envoiOp()" class="btn btn-success float-left" [disabled]="!envoiForm.valid">Envoyer</button>
+        </form>
+      </div>
+    </section>
+  </div>
+</div>
